@@ -13,9 +13,10 @@ class HMAC_SHA256 extends HMAC_SHA1 {
 }
 
 export class XTOTP extends TOTP {
-    constructor(s: string, options?: { d?: number, digest?: DigestFunc, interval?: number }) {
+    constructor(s: string, options?: {digest?: DigestFunc, interval?: number, base?:number }) {
         options = options || {};
         options.digest = (msg, key)=> new HMAC_SHA256(msg, key);
+        options.base = options.base || 16;
         super(s, options);
     }
 
@@ -30,7 +31,7 @@ export class XTOTP extends TOTP {
             (hmac_hash[offset + 1] & 0xff) << 16 |
             (hmac_hash[offset + 2] & 0xff) << 8 |
             (hmac_hash[offset + 3] & 0xff))
-        str_code = (code % 16 ** this.digits).toString(16).toUpperCase()
+        str_code = (code % this.base ** this.digits).toString(this.base).toUpperCase()
         return str_code.padStart(this.digits, '0');
     }
 }

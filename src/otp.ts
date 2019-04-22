@@ -73,7 +73,7 @@ export class OTP {
             (hmac_hash[offset + 1] & 0xff) << 16 |
             (hmac_hash[offset + 2] & 0xff) << 8 |
             (hmac_hash[offset + 3] & 0xff))
-        str_code = String(code % 10 ** this.digits)
+        str_code = (code % this.base ** this.digits).toString(this.base)
         return str_code.padStart(this.digits, '0');
     }
 

@@ -12,5 +12,5 @@ cd specotp && npm install
 
 # Test
 
- - 1. use browser to open dist/index.html
-   2. open develop mode(F12), check the console log information， should log true
+ - use browser to open dist/index.html
+   open develop mode(F12), check the console log information, should log true
