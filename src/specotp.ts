@@ -7,7 +7,7 @@ class HMAC_SHA256 extends HMAC_SHA1 {
             { sigBytes: 8, words: this.msg as number[] } as Crypto.LibWordArray,
             typeof this.key == 'string' ? this.key : { sigBytes: this.key.length, words: Array.from(this.key) } as Crypto.LibWordArray
         );
-        console.log('crypto sha256', a.toString());
+        // console.log('crypto sha256', a.toString());
         return a.toString();
     }
 }
